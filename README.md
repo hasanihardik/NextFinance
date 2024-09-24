@@ -1,10 +1,13 @@
-# Next.js + Typescript + Tailwind + Shadcn + AppWrite + Dwolla Banking Project named NextFinance
+# NextFinance : Banking Webapp
 
+Was made using :
+
+Next.js + Typescript + Tailwind + 
+Shadcn + AppWrite + Dwolla 
+Banking Project named NextFinance
 
 
 project screenshots
-
-
 
 
 ![Home page](image-1.png)
