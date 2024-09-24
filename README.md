@@ -6,7 +6,7 @@ Next.js, Typescript, TailwindCSS,
 Shadcn, AppWrite API, and Dwolla API.
 
 
-Project Screenshots :-
+# <b> Project Screenshots :- <b>
 
 # Home Page
 ![Home page](image-1.png)
