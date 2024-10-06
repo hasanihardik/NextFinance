@@ -5,7 +5,7 @@ Tech stack used :-
 Next.js, Typescript, TailwindCSS,
 Shadcn, AppWrite API, and Dwolla API.
 
-Project Screenshots :-
+Screenshots of the project :-
 
 # Home Page
 ![Home page](image-1.png)
