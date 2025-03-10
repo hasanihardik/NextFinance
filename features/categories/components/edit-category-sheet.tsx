@@ -24,13 +24,14 @@ import { Loader2 } from "lucide-react";
 export const EditCategorySheet = () => {
   const { isOpen, onClose, id } = useOpenCategory();
   const categoryQuery = useGetCategory(id);
-  const mutation = useEditCategory(id);
-  const deleteMutation = useDeleteCategory(id);
+  const mutation = id ? useEditCategory(id) : null;
+  const deleteMutation = id ? useDeleteCategory(id) : null;
   const [ConfirmationDialog, confirm] = useConfirm(
     "Delete category",
     "Are you sure you want to delete this category?"
   );
   const onSubmit = (formValues: FormValues) => {
+    if (!mutation) return;
     mutation.mutate(formValues, {
       onSuccess: () => {
         onClose();
@@ -40,14 +41,15 @@ export const EditCategorySheet = () => {
   const onDelete = async () => {
     const ok = await confirm();
     if (!ok) return;
+    if (!deleteMutation) return;
     deleteMutation.mutate(undefined, {
       onSuccess: () => {
         onClose();
       },
     });
   };
-  const isLoading = categoryQuery.isLoading;
-  const isPending = mutation.isPending || deleteMutation.isPending;
+  const isLoading = categoryQuery.isLoading && !!id;
+  const isPending = mutation?.isPending || deleteMutation?.isPending;
   const defaultValues = categoryQuery.data
     ? {
         name: categoryQuery.data.name,
