@@ -10,7 +10,16 @@ function makeQueryClient() {
       queries: {
         // With SSR, we usually want to set some default staleTime
         // above 0 to avoid refetching immediately on the client
-        staleTime: 60 * 1000,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        gcTime: 10 * 60 * 1000, // 10 minutes
+        retry: (failureCount, error) => {
+          // Only retry network errors, not 4xx or 5xx responses
+          if (error instanceof Error && error.message.includes('Failed to fetch')) {
+            return failureCount < 3;
+          }
+          return false;
+        },
+        refetchOnWindowFocus: false, // Disable automatic refetching on window focus
       },
     },
   });

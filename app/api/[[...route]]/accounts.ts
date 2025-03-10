@@ -70,12 +70,25 @@ const app = new Hono()
           ),
         });
       }
-      const [data] = await db
-        .insert(accounts)
-        .values({ id: createId(), userId: auth.userId, ...values })
-        .returning();
+      try {
+        const [data] = await db
+          .insert(accounts)
+          .values({ id: createId(), userId: auth.userId, ...values })
+          .returning();
 
-      return c.json({ data });
+        return c.json({ data });
+      } catch (error: any) {
+        console.error("Failed to create account:", error);
+        throw new HTTPException(500, {
+          res: c.json(
+            {
+              message: "Failed to create account",
+              error: error.message,
+            },
+            500
+          ),
+        });
+      }
     }
   )
   .post(

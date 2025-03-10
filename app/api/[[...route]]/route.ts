@@ -6,7 +6,8 @@ import accounts from "./accounts";
 import categories from "./categories";
 import transactions from "./transactions";
 import summary from "./summary";
-export const runtime = "edge";
+// Switching from edge to nodejs runtime for better database connection stability
+export const runtime = "nodejs";
 
 const app = new Hono().basePath("/api");
 
