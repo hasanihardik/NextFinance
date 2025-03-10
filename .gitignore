@@ -5,14 +5,17 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-.env
-.env.local
+
 # testing
 /coverage
 
 # next.js
 /.next/
 /out/
+.env
+.env.local
+.env.development
+.env.test
 
 # production
 /build
@@ -35,6 +38,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Sentry Config File
-.sentryclirc
