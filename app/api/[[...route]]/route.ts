@@ -9,7 +9,12 @@ import summary from "./summary";
 // Switching from edge to nodejs runtime for better database connection stability
 export const runtime = "nodejs";
 
-const app = new Hono().basePath("/api");
+const app = new Hono().basePath("/api").use(async (c, next) => {
+  c.header("Access-Control-Allow-Origin", "*");
+  c.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,PATCH,OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  await next();
+});
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
